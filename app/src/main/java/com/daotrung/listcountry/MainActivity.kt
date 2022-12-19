@@ -7,20 +7,26 @@ import androidx.recyclerview.widget.RecyclerView
 import com.daotrung.listcountry.Adapter.ListAdapter
 import com.daotrung.listcountry.AppUtil.utilList
 import com.daotrung.listcountry.Model.Country
+import com.daotrung.listcountry.databinding.ActivityMainBinding
+
 
 private lateinit var recyclerView: RecyclerView
 private lateinit var listCountry: MutableList<Country>
 private lateinit var listAdapter: ListAdapter
+private lateinit var binding: ActivityMainBinding
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        val view = binding.root
+        setContentView(view)
         listCountry = utilList.getListCountry()
-        recyclerView = findViewById(R.id.rvListCountry)
+        recyclerView = binding.rvListCountry
         listAdapter = ListAdapter(listCountry)
-             recyclerView.layoutManager = LinearLayoutManager(this)
-             recyclerView.adapter = listAdapter
+        recyclerView.layoutManager = LinearLayoutManager(this)
+        recyclerView.adapter = listAdapter
 
     }
+
+
 }
