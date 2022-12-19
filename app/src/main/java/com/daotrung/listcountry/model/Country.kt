@@ -2,8 +2,8 @@ package com.daotrung.listcountry.model
 
 data class Country(
     val id: Int,
-    val nameCountry: String,
-    val populationCountry: String,
+    val name: String,
+    val population: String,
     val landArea: String,
-    val densityCountry: String
+    val density: Long
 )

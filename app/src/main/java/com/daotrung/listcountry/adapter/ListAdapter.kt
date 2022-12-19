@@ -15,13 +15,13 @@ class ListAdapter(private var data: MutableList<Country>):RecyclerView.Adapter<L
               val id = view.findViewById<TextView>(R.id.txtId)
               id.text = country.id.toString()
               val name = view.findViewById<TextView>(R.id.txtName)
-              name.text = country.nameCountry
+              name.text = country.name
               val population = view.findViewById<TextView>(R.id.txtPopulation)
-              population.text = country.populationCountry
+              population.text = country.population
               val land  = view.findViewById<TextView>(R.id.txtLand)
               land.text = country.landArea
               val density = view.findViewById<TextView>(R.id.txtDensity)
-              density.text = country.densityCountry
+              density.text = country.density.toString()
 
           }
     }
