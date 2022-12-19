@@ -1,8 +1,8 @@
-package com.daotrung.listcountry.AppUtil
+package com.daotrung.listcountry.util
 
-import com.daotrung.listcountry.Model.Country
+import com.daotrung.listcountry.model.Country
 
-object utilList {
+object UtilList {
     fun getListCountry(): MutableList<Country>{
         val listCountry = mutableListOf<Country>()
         listCountry.addAll(listOf(Country(0,"Country","Population\n" +
