@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.daotrung.listcountry.model.Country
 import com.daotrung.listcountry.databinding.CardTitleCountryBinding
 
-class ListCountryAdapter : ListAdapter<Country, ListCountryAdapter.ListCountryVH>(diffCallback) {
+class CountryAdapter : ListAdapter<Country, CountryAdapter.MyViewCountryHolder>(diffCallback) {
 
     companion object {
         val diffCallback = object : DiffUtil.ItemCallback<Country>() {
@@ -25,29 +25,25 @@ class ListCountryAdapter : ListAdapter<Country, ListCountryAdapter.ListCountryVH
         }
     }
 
-    class ListCountryVH(
-        private val binding: CardTitleCountryBinding
-    ) : RecyclerView.ViewHolder(binding.root) {
-
-        private lateinit var country: Country
+    class MyViewCountryHolder(private val binding: CardTitleCountryBinding) :
+        RecyclerView.ViewHolder(binding.root) {
         fun bind(country: Country) {
-            this.country = country
             binding.txtId.text = country.id.toString()
-            binding.txtName.text = country.nameCountry
-            binding.txtPopulation.text = country.populationCountry
-            binding.txtDensity.text = country.densityCountry
+            binding.txtName.text = country.name
+            binding.txtPopulation.text = country.population
             binding.txtLand.text = country.landArea
-        }
+            binding.txtDensity.text = country.density.toString()
 
+        }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListCountryVH {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewCountryHolder {
         val binding =
             CardTitleCountryBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return ListCountryVH(binding)
+        return MyViewCountryHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: ListCountryVH, position: Int) {
+    override fun onBindViewHolder(holder: MyViewCountryHolder, position: Int) {
         holder.bind(getItem(position))
     }
 }
