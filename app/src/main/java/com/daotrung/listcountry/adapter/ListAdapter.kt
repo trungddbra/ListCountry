@@ -1,4 +1,4 @@
-package com.daotrung.listcountry.Adapter
+package com.daotrung.listcountry.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.daotrung.listcountry.Model.Country
+import com.daotrung.listcountry.model.Country
 import com.daotrung.listcountry.R
 
 class ListAdapter(private var data: MutableList<Country>):RecyclerView.Adapter<ListAdapter.MyViewCountryHolder>() {
@@ -15,13 +15,13 @@ class ListAdapter(private var data: MutableList<Country>):RecyclerView.Adapter<L
               val id = view.findViewById<TextView>(R.id.txtId)
               id.text = country.id.toString()
               val name = view.findViewById<TextView>(R.id.txtName)
-              name.text = country.txtNameCountry
+              name.text = country.name
               val population = view.findViewById<TextView>(R.id.txtPopulation)
-              population.text = country.txtPopulation
+              population.text = country.population
               val land  = view.findViewById<TextView>(R.id.txtLand)
-              land.text = country.txtLandArea
+              land.text = country.landArea
               val density = view.findViewById<TextView>(R.id.txtDensity)
-              density.text = country.txtDensity
+              density.text = country.density.toString()
 
           }
     }
