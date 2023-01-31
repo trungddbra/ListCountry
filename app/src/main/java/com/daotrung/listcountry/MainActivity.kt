@@ -1,13 +1,19 @@
 package com.daotrung.listcountry
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.daotrung.listcountry.adapter.CountryAdapter
 import com.daotrung.listcountry.databinding.ActivityMainBinding
+import com.daotrung.listcountry.util.RxSearchObservable.fromView
 import com.daotrung.listcountry.viewmodel.CountryViewModel
 import com.daotrung.listcountry.viewmodel.CountryViewModelFactory
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import io.reactivex.rxjava3.schedulers.Schedulers
+import java.util.concurrent.TimeUnit
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -35,6 +41,16 @@ class MainActivity : AppCompatActivity() {
             adapter = countryAdapter
         }
 
+
+
+        fromView(binding.searchViewList).debounce(300L, TimeUnit.MILLISECONDS)
+            .distinctUntilChanged()
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({ name ->
+                Log.d("TAG::", "onCreate:$name ")
+                countryViewModel.getCountries(name)
+            }, { it.printStackTrace() })
     }
 
 
